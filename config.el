@@ -109,3 +109,35 @@
 
 ;; Maximiza a janela ao iniciar
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Configuração do gptel
+(setq
+ gptel-model 'gemini-3.5-flash
+ gptel-backend (gptel-make-gemini "Gemini"
+                 :key "AQ.Ab8RN6KQnDSBBaZhwcPYli3Sw3gilNIReKM1fenjTHSwP4ypJQ"
+                 :stream t))
+(map! :leader
+      :desc "gptel"
+      "o g" #'gptel)
+
+
+(defun custom-banner ()
+  (let* ((banner
+          '(
+            ""
+            ""
+            "                                 M A Y B E   K I N D N E S S   I S   T H E   R E A L   P U N K   R O C K"
+            ""
+            ""))
+         (longest-line (apply #'max (mapcar #'length banner))))
+    (put-text-property
+     (point)
+     (dolist (line banner (point))
+       (insert line "\n"))
+     'face 'doom-dashboard-banner)))
+
+(setq! +dashboard-functions
+       '(custom-banner
+         +dashboard-widget-shortmenu
+         +dashboard-widget-footer
+         +dashboard-widget-loaded))

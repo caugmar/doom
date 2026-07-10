@@ -50,3 +50,4 @@
 
 (package! flexoki-themes)
 
+(package! gptel)
