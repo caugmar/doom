@@ -141,3 +141,7 @@
          +dashboard-widget-shortmenu
          +dashboard-widget-footer
          +dashboard-widget-loaded))
+
+;; Pra garantir o which-key-mode ligado
+(which-key-mode 1)
+
