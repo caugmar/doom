@@ -111,15 +111,21 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Configuração do gptel
+(setq auth-sources '("~/.authinfo"))
 (setq
  gptel-model 'gemini-3.5-flash
- gptel-backend (gptel-make-gemini "Gemini"
-                 :key "AQ.Ab8RN6KQnDSBBaZhwcPYli3Sw3gilNIReKM1fenjTHSwP4ypJQ"
-                 :stream t))
+; gptel-backend (gptel-make-gemini "Gemini"
+;                 :key nil
+;                 :stream t))
+ gptel-backend
+ (gptel-make-gemini "Gemini"
+   :key (lambda ()
+          (let ((creds (car (auth-source-search :host "generativelanguage.googleapis.com" :user "apikey"))))
+            (funcall (plist-get creds :secret))))))
+
 (map! :leader
       :desc "gptel"
       "o g" #'gptel)
-
 
 (defun custom-banner ()
   (let* ((banner
