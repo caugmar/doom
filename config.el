@@ -151,3 +151,10 @@
 ;; Pra garantir o which-key-mode ligado
 (which-key-mode 1)
 
+;;Config pro Hy REPL
+(after! hy-mode
+	;; Define o handler do REPL para o Doom
+	(set-repl-handler! 'hy-mode #'run-hy)
+	;; Garante que o Hy use o executável de Python correto do Poetry
+	(add-hook 'hy-mode-hook #'poetry-venv-workon))
+
