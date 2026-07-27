@@ -158,3 +158,6 @@
 	;; Garante que o Hy use o executável de Python correto do Poetry
 	(add-hook 'hy-mode-hook #'poetry-venv-workon))
 
+(map! :leader
+      :desc "scratch buffer"
+      "o s" #'scratch-buffer)
