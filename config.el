@@ -95,8 +95,11 @@
 (map! "<f3>" #'treemacs)
 
 ;; A configuração de inicialização está correta
-(setq org-startup-indented t)
-(setq org-startup-folded 'content)
+(after! org
+  (setq org-startup-indented t))
+
+(after! org
+  (setq org-startup-folded 'show2levels))
 
 ;; O 'save-place' já é ativado pelo Doom, mas esta linha 
 ;; garante que ele ignore arquivos temporários ou sem leitura
@@ -161,3 +164,7 @@
 (map! :leader
       :desc "scratch buffer"
       "o s" #'scratch-buffer)
+
+(map! :leader
+      :desc "IELM (Elisp REPL)"
+      "o i" #'ielm)
