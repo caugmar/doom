@@ -168,3 +168,11 @@
 (map! :leader
       :desc "IELM (Elisp REPL)"
       "o i" #'ielm)
+
+(require 'todotxt-mode)
+
+(setq todotxt-default-file (expand-file-name "/home/guto/MEGAsync/Pessoais/notas/todo.txt"))
+
+(map! :leader
+      :desc "TODO.TXT"
+      "o t" #'todotxt-open-file)

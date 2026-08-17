@@ -51,3 +51,5 @@
 (package! flexoki-themes)
 
 (package! gptel)
+
+(package! todotxt-mode)
