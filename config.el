@@ -114,17 +114,22 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Configuração do gptel
+;; Configuração do gptel
 (setq auth-sources '("~/.authinfo"))
+
 (setq
- gptel-model 'gemini-3.5-flash
-; gptel-backend (gptel-make-gemini "Gemini"
-;                 :key nil
-;                 :stream t))
+ gptel-model 'gpt-5.6-luna
  gptel-backend
- (gptel-make-gemini "Gemini"
+ (gptel-make-openai-responses "OpenAI"
    :key (lambda ()
-          (let ((creds (car (auth-source-search :host "generativelanguage.googleapis.com" :user "apikey"))))
-            (funcall (plist-get creds :secret))))))
+          (let ((creds
+                 (car
+                  (auth-source-search
+                   :host "api.openai.com"
+                   :user "apikey"))))
+            (funcall (plist-get creds :secret))))
+   :stream t))
+
 
 (map! :leader
       :desc "gptel"
